@@ -12,21 +12,24 @@ import javax.xml.bind.annotation.XmlAccessType;
 
 @XmlRootElement(name = "producto")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(propOrder = { "nombre", "tipo", "fechaDePublicacion", "precio" })
+@XmlType(propOrder = { "nombre", "tipo", "precio" , "descripcion"})
 public class Producto implements Serializable{
 
 
     private static final long serialVersionUID = -2924448807956380505L;
     @XmlAttribute
     private int id;
+    @XmlAttribute
+    private String fechaDePublicacion;
     @XmlElement
     private String nombre;
     @XmlElement
     private String tipo;
     @XmlElement
-    private double precio;
+    private String descripcion;
     @XmlElement
-    private String fechaDePublicacion;
+    private double precio;
+
 
     @XmlTransient
     private Marca marca;
@@ -35,12 +38,13 @@ public class Producto implements Serializable{
         super();
     }
 
-    public Producto(int id, String nombre, String tipo, String fechaDePublicacion, double precio) {
+    public Producto(int id,String fechaDePublicacion, String nombre, String tipo, String descripcion, double precio) {
         super();
         this.id = id;
+        this.fechaDePublicacion = fechaDePublicacion;
         this.nombre = nombre;
         this.tipo = tipo;
-        this.fechaDePublicacion = fechaDePublicacion;
+        this.descripcion= descripcion;
         this.precio = precio;
     }
 
@@ -83,6 +87,14 @@ public class Producto implements Serializable{
         this.id = id;
     }
 
+    public String getFechaDePublicacion() {
+        return fechaDePublicacion;
+    }
+
+    public void setFechaDePublicacion(String fechaDePublicacion) {
+        this.fechaDePublicacion = fechaDePublicacion;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -99,12 +111,12 @@ public class Producto implements Serializable{
         this.tipo = tipo;
     }
 
-    public String getFechaDePublicacion() {
-        return fechaDePublicacion;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setFechaDePublicacion(String fechaDePublicacion) {
-        this.fechaDePublicacion = fechaDePublicacion;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public double getPrecio() {
@@ -117,7 +129,10 @@ public class Producto implements Serializable{
 
     @Override
     public String toString() {
-        return "Producto [id=" + id + ", nombre=" + nombre + ", tipo=" + tipo + ", fechaDePublicacion="
-                + fechaDePublicacion + ", precio=" + precio + "]";
+        return "Producto [id=" + id + ", fechaDePublicacion=" + fechaDePublicacion
+                + ", nombre=" + nombre + ", tipo=" + tipo +", descripcion="+ descripcion
+                + ", precio=" + precio + "]";
     }
+
+
 }
