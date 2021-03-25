@@ -17,7 +17,7 @@ public class Producto implements Serializable{
 
 
     private static final long serialVersionUID = -2924448807956380505L;
-    @XmlAttribute
+    @XmlTransient
     private int id;
     @XmlAttribute
     private String fechaDePublicacion;
