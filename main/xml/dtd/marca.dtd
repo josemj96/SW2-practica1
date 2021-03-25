@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+        <!ELEMENT marca (nombre|productos)*>
+
+        <!--- Put your DTDDoc comment here. -->
+        <!ELEMENT nombre (#PCDATA)>
+
+        <!--- Put your DTDDoc comment here. -->
+        <!ELEMENT productos (productos|nombre|tipo|descripcion|precio)*>
+        <!ATTLIST productos
+                fechaDePublicacion CDATA #IMPLIED
+                >
+
+        <!--- Put your DTDDoc comment here. -->
+        <!ELEMENT tipo (#PCDATA)>
+        <!--- Put your DTDDoc comment here. -->
+        <!ELEMENT descripcion (#PCDATA)>
+        <!--- Put your DTDDoc comment here. -->
+        <!ELEMENT precio (#PCDATA)>

@@ -19,7 +19,7 @@ public class Marca implements Serializable{
     @XmlElement
     private String Nombre;
 
-    @XmlElement(name = "producto")
+    //@XmlElement(name = "producto")
     @XmlElementWrapper(name = "productos")
     private ArrayList<Producto> productos;
 //    @XmlTransient
