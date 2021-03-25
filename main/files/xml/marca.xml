@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE marca SYSTEM "../dtd/marca.dtd">
+<marca>
+    <nombre>Marca1</nombre>
+    <productos>
+        <productos fechaDePublicacion="25/03/2021">
+            <nombre>Producto1</nombre>
+            <tipo>Comida</tipo>
+            <descripcion>Se come </descripcion>
+            <precio>300.0</precio>
+        </productos>
+    </productos>
+
+    <nombre>Marca2</nombre>
+    <productos>
+        <productos fechaDePublicacion="23/07/1996">
+            <nombre>Reloj</nombre>
+            <tipo>Complemento</tipo>
+            <descripcion>Se pone </descripcion>
+            <precio>33.23</precio>
+        </productos>
+    </productos>
+    <nombre>Marca3</nombre>
+    <productos>
+        <productos fechaDePublicacion="26/10/1998">
+            <nombre>Action Man</nombre>
+            <tipo>Juguete</tipo>
+            <descripcion>Se juega </descripcion>
+            <precio>22.22</precio>
+        </productos>
+    </productos>
+</marca>
