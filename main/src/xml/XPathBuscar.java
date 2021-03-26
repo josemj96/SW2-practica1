@@ -15,7 +15,21 @@ import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 public class XPathBuscar {
+    public void Buscador(String Sentencia){
+        File xmlFile = new File("main/files/xml/marca.xml");
+        String expressionXPath = Sentencia;
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.parse(xmlFile);
+            XPath xpath = XPathFactory.newInstance().newXPath();
+            String resultado = (String) xpath.evaluate(expressionXPath, doc, XPathConstants.NUMBER);
+            System.out.println("El  resultado de la sentencia es el siguiente : " + resultado);
 
+        } catch (Exception ex) {
+            System.out.println("La consulta ha fallado");
+        }
+    }
     public void XpathBuscarTotalProductosPrecioMenor () {
 
         File xmlFile = new File("main/files/xml/marca.xml");
