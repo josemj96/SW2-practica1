@@ -50,4 +50,18 @@ public class XQuery {
         return queryResult;
 
     }
+
+    protected void productosPorTipo(){
+        cargarXquery("main/files/xquery/XQuery.xqy");
+
+    }
+    protected void productosPorNombre(){
+        cargarXquery("main/files/xquery/XQuery2.xqy");
+
+
+    }
+    protected void productosPorFechaDePublicacion(){
+        cargarXquery("main/files/xquery/XQuery3.xqy");
+
+    }
 }
