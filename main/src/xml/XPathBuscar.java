@@ -16,9 +16,9 @@ import org.xml.sax.SAXException;
 
 public class XPathBuscar {
 
-    public void XpathBuscarTotalProductosPrecioMenor (String fichero) {
+    public void XpathBuscarTotalProductosPrecioMenor () {
 
-        File xmlFile = new File("./files/xml/"+fichero+".xml");
+        File xmlFile = new File("main/files/xml/marca.xml");
 
         String expressionXPath = "count(//marca/productos/productos[precio < 30.0])";
         try {
@@ -28,14 +28,28 @@ public class XPathBuscar {
             XPath xpath = XPathFactory.newInstance().newXPath();
             Double resultado = (Double) xpath.evaluate(expressionXPath, doc, XPathConstants.NUMBER);
             System.out.println("El  número total de productos con precio menor a 30 euros es : " + resultado);
-        } catch (SAXException ex) {
-            Logger.getLogger(XPathBuscar.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(XPathBuscar.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (XPathExpressionException ex) {
-            Logger.getLogger(XPathBuscar.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ParserConfigurationException ex) {
-            Logger.getLogger(XPathBuscar.class.getName()).log(Level.SEVERE, null, ex);
+
+        } catch (Exception ex) {
+            System.out.println("La consulta ha fallado");
+        }
+
+    }
+
+    public void XpathBuscarPorFechaDePublicacion () {
+
+        File xmlFile = new File("main/files/xml/marca.xml");
+
+        String expressionXPath = "//marca/productos/productos[@fechaDePublicacion = \"23/07/1996\"]";
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.parse(xmlFile);
+            XPath xpath = XPathFactory.newInstance().newXPath();
+            String resultado = (String) xpath.evaluate(expressionXPath, doc, XPathConstants.NUMBER);
+            System.out.println("El producto con la fecha de publicación 23/07/1996 es : " + resultado);
+
+        } catch (Exception ex) {
+            System.out.println("La consulta ha fallado");
         }
 
     }
