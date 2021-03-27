@@ -12,20 +12,26 @@ import javax.xml.validation.Validator;
 import org.xml.sax.SAXException;
 
 public class CheckXSD {
-    public static void main(String[] args) {
-        File xmlFile = new File("main/files/xml/marca.xml");
-        File xsdFile = new File("main/files/xsd/marca.xsd");
+    public boolean validarXSD(String xsdPath, String xmlPath){
+
+       // File xmlFile = new File("main/files/xml/marca.xml");
+       // File xsdFile = new File("main/files/xsd/marca.xsd");
+
         try {
-            SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
-            Schema schema = schemaFactory.newSchema(xsdFile);
-            Validator validator = schema.newValidator();
-            validator.validate(new StreamSource(xmlFile));
-            System.out.println(xmlFile + " is valid against the " + xsdFile + " Schema");
+            SchemaFactory factory
+                    = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+            Schema schema = factory.newSchema(new File(xsdPath));
+            Validator validator = (Validator) schema.newValidator();
+            validator.validate(new StreamSource(new File(xmlPath)));
+
         } catch (SAXException ex) {
-            System.out.println(xmlFile + " is not valid against the " + xsdFile + " Schema");
             Logger.getLogger(CheckXSD.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         } catch (IOException ex) {
             Logger.getLogger(CheckXSD.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
+        return true;
     }
+
 }

@@ -3,7 +3,7 @@
 <marca>
     <nombre>Marca1</nombre>
     <productos>
-        <productos fechaDePublicacion="25/03/2021">
+        <productos fechaDePublicacion="25-03-2021">
             <nombre>Producto1</nombre>
             <tipo>Comida</tipo>
             <descripcion>Se come </descripcion>
@@ -13,7 +13,7 @@
 
     <nombre>Marca2</nombre>
     <productos>
-        <productos fechaDePublicacion="23/07/1996">
+        <productos fechaDePublicacion="23-07-1996">
             <nombre>Reloj</nombre>
             <tipo>Complemento</tipo>
             <descripcion>Se pone </descripcion>
@@ -22,7 +22,7 @@
     </productos>
     <nombre>Marca3</nombre>
     <productos>
-        <productos fechaDePublicacion="26/10/1998">
+        <productos fechaDePublicacion="26-10-1998">
             <nombre>Action Man</nombre>
             <tipo>Juguete</tipo>
             <descripcion>Se juega </descripcion>

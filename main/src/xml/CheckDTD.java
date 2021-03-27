@@ -13,8 +13,9 @@ import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 public class CheckDTD {
-    public static void main(String[] args) {
-        File xmlFile = new File("main/files/xml/marca.xml");
+    public  boolean validarXML(String xml){
+        File xmlFile = new File(xml);
+        //File xmlFile = new File("main/files/xml/marca.xml");
         try {
             DocumentBuilderFactory dBF = DocumentBuilderFactory.newInstance();
             dBF.setValidating(true);
@@ -30,13 +31,16 @@ public class CheckDTD {
         } catch (ParserConfigurationException ex) {
             System.out.println(xmlFile + " error while parsing!");
             Logger.getLogger(CheckDTD.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         } catch (SAXException ex) {
             System.out.println(xmlFile + " was not well-formed!");
             Logger.getLogger(CheckDTD.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         } catch (IOException ex) {
             System.out.println(xmlFile + " was not accesible!");
             Logger.getLogger(CheckDTD.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
-
+        return true;
     }
 }
