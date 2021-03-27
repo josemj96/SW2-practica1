@@ -2,7 +2,7 @@ package xml;
 
 import clases.Producto;
 import clases.Marca;
-
+import java.util.Scanner;
 import java.util.ArrayList;
 
 public class GUI {
