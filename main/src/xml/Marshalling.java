@@ -23,10 +23,10 @@ public class Marshalling {
         }
     }
 
-    protected void crearXMLMarca(String nombreFichero, Marca marca) {
+    protected void crearXMLMarca(String Fichero, Marca marca) {
         try {
             FileWriter fichero = null;
-            File file = new File("main/files/xml/" + nombreFichero);
+            File file = new File("main/files/xml/" + Fichero);
             comprobarFichero(file);
         } catch (Exception ex){
 
@@ -35,7 +35,7 @@ public class Marshalling {
         }
             try {
                 FileWriter fichero = null;
-                fichero = new FileWriter("main/files/xml/" + nombreFichero);
+                fichero = new FileWriter("main/files/xml/" + Fichero);
                 JAXBContext context = JAXBContext.newInstance(Marca.class);
                 Marshaller m = context.createMarshaller();
                 m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
@@ -46,5 +46,24 @@ public class Marshalling {
         } catch (Exception ex) {
             Logger.getLogger(Marshalling.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    protected Marca importarObjetoMarca(String Fichero){
+        Marca marca = new Marca();
+        try {
+
+            File file = new File("main/files/xml/" + Fichero);
+            JAXBContext jaxbContext = JAXBContext.newInstance(Marca.class);
+
+            Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+            marca = (Marca) jaxbUnmarshaller.unmarshal(file);
+
+
+
+
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+        return marca;
     }
 }
