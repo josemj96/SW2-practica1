@@ -52,13 +52,11 @@ public class Marshalling {
         Marca marca = new Marca();
         try {
 
-            File file = new File("main/files/xml/" + Fichero);
+            File file = new File("./main/files/xml/" + Fichero);
             JAXBContext jaxbContext = JAXBContext.newInstance(Marca.class);
 
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             marca = (Marca) jaxbUnmarshaller.unmarshal(file);
-
-
 
 
         } catch (JAXBException e) {
