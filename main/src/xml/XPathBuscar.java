@@ -23,7 +23,7 @@ public class XPathBuscar {
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document doc = builder.parse(xmlFile);
             XPath xpath = XPathFactory.newInstance().newXPath();
-            String resultado = (String) xpath.evaluate(expressionXPath, doc, XPathConstants.NUMBER);
+            String resultado = xpath.evaluate(expressionXPath, doc, XPathConstants.STRING).toString();
             System.out.println("El  resultado de la sentencia es el siguiente : " + resultado);
 
         } catch (Exception ex) {
@@ -52,14 +52,14 @@ public class XPathBuscar {
     public void XpathBuscarPorFechaDePublicacion () {
 
         File xmlFile = new File("main/files/xml/marca.xml");
-        String expressionXPath = "marca/productos/productos[@fechaDePublicacion = 23-07-1996]";
+        String expressionXPath = "marca/productos/productos[@fechaDePublicacion = '23-07-1996']";
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document doc = builder.parse(xmlFile);
             XPath xpath = XPathFactory.newInstance().newXPath();
             //falla la conversión de Double a String
-            String resultado = (String) xpath.evaluate(expressionXPath, doc, XPathConstants.NUMBER);
+            String resultado = xpath.evaluate(expressionXPath, doc, XPathConstants.STRING).toString();
             System.out.println("El producto con la fecha de publicación 23-07-1996 es : " + resultado);
 
         } catch (Exception ex) {
