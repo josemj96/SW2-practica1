@@ -28,22 +28,26 @@ public class Marshalling {
             FileWriter fichero = null;
             File file = new File("main/files/xml/" + Fichero);
             comprobarFichero(file);
-        } catch (Exception ex){
-
-            System.out.println("La consulta ha fallado");
-
-        }
             try {
-                FileWriter fichero = null;
                 fichero = new FileWriter("main/files/xml/" + Fichero);
-                JAXBContext context = JAXBContext.newInstance(Marca.class);
-                Marshaller m = context.createMarshaller();
-                m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-                m.marshal(marca, fichero);
-                fichero.close();
 
 
-        } catch (Exception ex) {
+                try {
+                    JAXBContext context = JAXBContext.newInstance(Marca.class);
+                    Marshaller m = context.createMarshaller();
+                    m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+                    m.marshal(marca, fichero);
+
+                } catch (PropertyException ex) {
+                    Logger.getLogger(Marshalling.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (JAXBException ex) {
+                    Logger.getLogger(Marshalling.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(Marshalling.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            fichero.close();
+        } catch (IOException ex) {
             Logger.getLogger(Marshalling.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -66,25 +70,40 @@ public class Marshalling {
     }
 
     protected void crearXMLProducto(String Fichero, Producto producto) {
+        System.out.println(producto);
+        if(producto!=null){
             try {
                 FileWriter fichero = null;
                 File file = new File("main/files/xml/" + Fichero);
                 comprobarFichero(file);
-            } catch (Exception ex) {
+                try {
+                    fichero = new FileWriter("main/files/xml/" + Fichero);
 
-                System.out.println("La consulta ha fallado");
-            }
-            try {
-                FileWriter fichero = null;
-                JAXBContext context = JAXBContext.newInstance(Producto.class);
-                Marshaller m = context.createMarshaller();
-                m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-                m.marshal(producto, fichero);
+
+                    try {
+                        JAXBContext context = JAXBContext.newInstance(Producto.class);
+                        Marshaller m = context.createMarshaller();
+                        m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+                        m.marshal(producto, fichero);
+
+                    } catch (PropertyException ex) {
+                        Logger.getLogger(Marshalling.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (JAXBException ex) {
+                        Logger.getLogger(Marshalling.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } catch (IOException ex) {
+                    Logger.getLogger(Marshalling.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 fichero.close();
-            } catch (Exception ex) {
+            } catch (IOException ex) {
                 Logger.getLogger(Marshalling.class.getName()).log(Level.SEVERE, null, ex);
             }
+    }else{
+
+        System.out.println("No se pudo crear el xml");
+
     }
+}
     protected Producto importarObjetoProducto(String Fichero){
         Producto producto= new Producto();
         try {
@@ -95,7 +114,8 @@ public class Marshalling {
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             producto = (Producto) jaxbUnmarshaller.unmarshal(file);
 
-
+            System.out.println(producto.getNombre() + " " +producto.getFechaDePublicacion()
+                    + " "+ producto.getTipo()+ " "+ producto.getDescripcion() + " " + producto.getPrecio());
 
 
         } catch (JAXBException e) {

@@ -18,9 +18,11 @@ public class GUI {
     Marca marca = new Marca();
 
     private void crearXMLMarca(String Fichero, Marca marca){
+
         mrs.crearXMLMarca(Fichero, marca);
     }
     private void crearXMLProducto(String nombreProducto, String Fichero){
+       System.out.println(marca.getNombre());
         mrs.crearXMLProducto(Fichero,vO.buscarProducto(nombreProducto,marca));
     }
     private Producto importarObjetoProducto(String Fichero){
